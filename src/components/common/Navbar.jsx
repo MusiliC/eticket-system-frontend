@@ -49,7 +49,7 @@ const Navbar = () => {
           {/* contact */}
           <div className="hidden md:flex">
             <Link href="/contact">
-              <Button text={"Logout"} />
+              <OutlineButton text={"Logout"} />
             </Link>
           </div>
 

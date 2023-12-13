@@ -16,7 +16,8 @@ const styles = {
   };
   
   export const layout = {
-   smallComponentContainer: `flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0`,
+   smallComponentContainer: `flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0`,
+   listComponentContainer: `flex flex-col items-center justify-start px-6 py-8 mx-auto min-h-[100vh] lg:py-0`,
    userMainContainer:`w-5/6 mx-auto py-8`
   };
 

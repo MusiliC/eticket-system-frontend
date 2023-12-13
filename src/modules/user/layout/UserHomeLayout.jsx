@@ -10,9 +10,10 @@ const UserHomeLayout = () => {
     <>
     <Navbar/>
     </>
-    <div>
-    <Outlet/>
-    </div>     
+    <div className='w-full'>
+    <Outlet/> 
+    </div>
+    
      <Footer/>
      </>
   )
