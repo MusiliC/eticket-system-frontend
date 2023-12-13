@@ -15,7 +15,7 @@ const UserHome = () => {
         <div
           className={`lg:flex-1 justify-center pt-20  md:pt-28 pb-10 ${styles.flexStart} flex-col gap-4 xl:px-0  `}
         >
-          <div className="lg:text-[2.7rem] text-[2rem] font-semibold leading-[3rem] lg:tracking-[2px] lg:leading-[3.5rem] lg:font-bold">
+          <div className="headingOne">
             <p>
               Experience The <br />
               <span className="text-secondary-100">Thrill of Live Sports</span>

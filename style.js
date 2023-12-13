@@ -16,9 +16,10 @@ const styles = {
   };
   
   export const layout = {
-   smallComponentContainer: `flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0`,
-   listComponentContainer: `flex flex-col items-center justify-start px-6 py-8 mx-auto min-h-[100vh] lg:py-0`,
-   userMainContainer:`w-5/6 mx-auto py-8`
+   smallComponentContainer: `flex flex-col items-center justify-center  py-8 mx-auto min-h-screen lg:py-0`,
+   listComponentContainer: `flex flex-col items-center justify-start  py-8 mx-auto min-h-[100vh] lg:py-0`,
+   userMainContainer:`w-5/6 mx-auto py-8`,
+   fixtureCard:`grid grid-cols-2 my-6 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border-b-1 border-primary-100 p-[17px]`
   };
 
   export const buttons = {

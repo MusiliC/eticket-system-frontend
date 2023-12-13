@@ -20,8 +20,16 @@
     @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
   }
 
+  .headingOne{
+    @apply lg:text-[2.7rem] text-[2rem] font-semibold leading-[3rem] lg:tracking-[2px] lg:leading-[3.5rem] lg:font-bold;
+  }
+
   .headingTwo {
     @apply text-lg mb-7 font-medium leading-tight tracking-tight text-primary-100 md:text-xl dark:text-white;
+  }
+
+  .headerThree{
+    @apply lg:text-[2rem]  text-[1.5rem] font-semibold leading-[3rem] lg:tracking-[2px] lg:leading-[3.5rem] lg:font-bold;
   }
 
   .listComponentContainer{
@@ -31,6 +39,15 @@
   .ticketCard{
     @apply grid grid-cols-2 my-6 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border border-gray-200 rounded-sm shadow-md p-[17px];
   }
+
+  .smallComponentContainer{
+    @apply flex flex-col items-center justify-center  py-8 mx-auto min-h-screen lg:py-0;
+  }
+
+
+
+
+
 
   .footerContainer{
         width: 100%;

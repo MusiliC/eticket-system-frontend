@@ -6,7 +6,7 @@ import Button from '../../../../components/common/Button'
 const TicketCard = () => {
   return (
     <div className='ticketCard'>
-        <div className='col-span-1 flex items-center lg:justify-start'>
+        <div className='col-span-1 flex lg:items-center lg:justify-start'>
             <p>Ticket No</p>
         </div>
         <div className='col-span-1 flex lg:items-center  lg:justify-center'>
@@ -20,7 +20,7 @@ const TicketCard = () => {
             <p>11/22/12</p>
         </div>
         <div className='col-span-1 flex lg:items-center  lg:justify-end'>
-            <Link>
+            <Link to="./1">
             <Button text={"View"} />
             </Link>
         </div>

@@ -2,6 +2,7 @@
 import React from 'react'
 import Header from '../components/common/Header'
 import { layout } from '../../../../style'
+import FixtureCard from '../components/cards/FixtureCard'
 
 const FixturePage = () => {
   return (
@@ -9,7 +10,7 @@ const FixturePage = () => {
     <Header text={"Upcoming Fixtures"} />
     <section className="pageLayout">
    <div className="listComponentContainer">
-    
+    <FixtureCard/>
    </div>
    </section>
   </section>
