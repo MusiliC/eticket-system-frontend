@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../../components/common/Button'
 import OutlineButton from '../../../components/common/OutlineButton'
+import fkf from "/public/fkf.png"
 
 
 const OneTicket = () => {
@@ -20,7 +21,7 @@ const OneTicket = () => {
           <div className="flex items-center justify-around">
             <div className="imagePart">
               <img
-                src="https://footballkenya.org/wp-content/uploads/2019/09/FKF-Website-Header-Logo-300x120.png"
+                src={fkf}
                 alt="Logo"
               />
             </div>

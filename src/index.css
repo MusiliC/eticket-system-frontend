@@ -46,7 +46,14 @@
 
 
 
-
+  .profile{
+    padding: 9px 15px;
+    border-radius: 50%; 
+    border:none;
+    background-color: rgb(10, 79, 182) ;
+    color: white;
+    font-weight: 600;
+}
 
 
   .footerContainer{
