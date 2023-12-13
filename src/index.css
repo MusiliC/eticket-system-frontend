@@ -41,7 +41,7 @@
   }
 
   .smallComponentContainer{
-    @apply flex flex-col items-center justify-center  py-8 mx-auto min-h-screen lg:py-0;
+    @apply flex flex-col items-center justify-center  py-8 mx-auto min-h-[90vh] lg:py-0;
   }
 
 
@@ -53,6 +53,22 @@
     background-color: rgb(10, 79, 182) ;
     color: white;
     font-weight: 600;
+}
+
+.formTicketContainer {
+  width: 80%;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 15px;
+  margin: 20px 0px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .formTicketContainer {
+    grid-template-columns: auto; 
+    width: 100%;
+  }
 }
 
 

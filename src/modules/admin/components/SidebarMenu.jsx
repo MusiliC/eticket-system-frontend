@@ -12,7 +12,7 @@ const SidebarMenu = () => {
       <div className="pl-10 pt-10">
         {adminLinks &&
           adminLinks.map((adminLink) => (
-            <NavLink to={adminLink.id} key={adminLink.title} className="flex items-center justify-start py-6 gap-3">
+            <NavLink to={adminLink.id} key={adminLink.title}  className="flex items-center justify-start py-6 gap-3">
               <div>
                 {adminLink.icon ? <img src={adminLink.icon}  className="h-[25px] w-[25px]  object-cover" alt="" /> : ""}
               </div>

@@ -24,7 +24,7 @@ const FixtureCard = () => {
         <p>11/22/12</p>
       </div>
       <div className="col-span-1 flex lg:items-center  lg:justify-end">
-        <Link>
+        <Link to={"/eticket/book"}>
           <OutlineButton text={"Buy Ticket"} />
         </Link>
       </div>
