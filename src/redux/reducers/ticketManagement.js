@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    ticketEvent:{},
     ticketEvents: [],
     loading: false,
     addingEvent: false,

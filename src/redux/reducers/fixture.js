@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    fixture:{},
     totalFixtures: [],
     loading: false,
     addingFixture: false,
