@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios from "axios";
 import { API_BASE_URL } from "../../components/constants";
 
 export const API = axios.create({
