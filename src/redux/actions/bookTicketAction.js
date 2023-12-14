@@ -46,3 +46,16 @@ export const addBookTicketAction = createAsyncThunk(
       }
     }
   );
+
+  export const getUserTickets = createAsyncThunk("bookticket/list/userId",
+  async(userId) => {
+    try {
+      const res = await API.get(`bookticket/list/${userId}`);
+      return {
+        totalTickets: res?.data?.totalTickets,
+        success: true,
+      };
+    } catch (error) {
+      return error.message; 
+    }
+  })
