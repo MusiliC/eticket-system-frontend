@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import OutlineButton from "../../../components/common/OutlineButton";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../components/common/FormInputError";
+import { useDispatch, useSelector } from "react-redux";
+import { getTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
 
 const CreateFixtureForm = () => {
   const {
@@ -16,32 +18,45 @@ const CreateFixtureForm = () => {
     console.log(data);
   };
 
+  const dispatch = useDispatch();
+
+  const { loading, ticketEvents } = useSelector(
+    (state) => state.ticketManagementReducer
+  );
+
+
+ 
+
+  useEffect(() => {
+    dispatch(getTicketManagementAction());
+  }, []);
+
   return (
     <form className="formTicketContainer" onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="fixtureType" className="labelStyling">
+        <label htmlFor="fixtureDescId" className="labelStyling">
           Select fixture type
         </label>
         <select
-          name="fixtureType"
-          {...register("fixtureType", {
+          name="fixtureDescId"
+          {...register("fixtureDescId", {
             required: {
               value: true,
               message: "Field is required",
             },
           })}
-          id="fixtureType"
+          id="fixtureDescId"
           className="inputStyling"
         >
-          <option value="" selected disabled hidden>
-            Fixture type
-          </option>
-          <option value="Afcon">Afcon</option>
-          <option value="KPL">KPL</option>
+          {ticketEvents?.map((event) => (
+            <option key={event.id} value={event.id}>
+              {event.fixtureType}
+            </option>
+          ))}
         </select>
 
-        {errors?.fixtureType && (
-          <FormInputError message={errors?.fixtureType?.message} />
+        {errors?.fixtureDescId && (
+          <FormInputError message={errors?.fixtureDescId?.message} />
         )}
       </div>
       {/* fixture time */}

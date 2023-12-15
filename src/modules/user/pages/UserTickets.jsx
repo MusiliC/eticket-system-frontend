@@ -20,7 +20,7 @@ const UserTickets = () => {
     <section className="mt-20 w-full">
       <Header text={"My Tickets"} />
       <section className="pageLayout">
-        <div className="listComponentContainer">
+        <div className="listComponentContainer mt-3">
           {loading ? (
             <p className="headerThree">Loading..</p>
           ) : totalTickets?.length === 0 ? (

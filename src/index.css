@@ -37,7 +37,7 @@
   }
 
   .ticketCard{
-    @apply grid grid-cols-2 my-6 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border border-gray-200 rounded-sm shadow-md p-[17px];
+    @apply grid grid-cols-2 my-3 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border border-gray-200 rounded-sm shadow-md p-[17px];
   }
 
   .smallComponentContainer{

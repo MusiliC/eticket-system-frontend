@@ -12,7 +12,7 @@ const AdminFixtureCard = ({...fixture}) => {
     className={`grid grid-cols-2 my-4 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border-b-[1px] border-primary-100 p-[10px]`}
   >
     <div className="col-span-1 flex lg:items-center lg:justify-start">
-      <p>{fixture.fixtureType}</p>
+      <p>{`fixtureDescId - ${fixture.fixtureDescId}`}</p>
     </div>
     <div className="col-span-1 flex   flex-col lg:items-center  gap-1">
       <p>{fixture.fixtureTime}</p>

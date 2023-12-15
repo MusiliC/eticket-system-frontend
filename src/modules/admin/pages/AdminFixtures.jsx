@@ -17,6 +17,8 @@ const AdminFixtures = () => {
     (state) => state.fixtureReducer
   );
 
+  console.log(totalFixtures);
+
   useEffect(() => {
     dispatch(getFixtureAction());
   }, []);

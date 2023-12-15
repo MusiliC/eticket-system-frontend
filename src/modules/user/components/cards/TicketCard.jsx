@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '../../../../components/common/Button'
 
 const TicketCard = ({...ticket}) => {
+    console.log(ticket);
   return (
     <div className='ticketCard'>
         <div className='col-span-1 flex lg:items-center lg:justify-start'>
