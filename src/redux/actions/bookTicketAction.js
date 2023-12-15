@@ -8,7 +8,7 @@ export const addBookTicketAction = createAsyncThunk(
       try {
         const res = await API.post("bookticket/add", ticket);
         return {
-          ticket: res?.data?.ticket,
+          ticket: res?.data,
           success: true,
         };
       } catch (error) {
@@ -23,7 +23,7 @@ export const addBookTicketAction = createAsyncThunk(
       try {
         const res = await API.get("bookticket/list");
         return {
-          totalTickets: res?.data?.totalTickets,
+          totalTickets: res?.data,
           success: true,
         };
       } catch (error) {
@@ -38,7 +38,7 @@ export const addBookTicketAction = createAsyncThunk(
       try {
         const res = await API.get(`bookticket/list/${ticketId}`);
         return {
-          ticket: res?.data?.ticket,
+          ticket: res?.data,
           success: true,
         };
       } catch (error) {
@@ -52,7 +52,7 @@ export const addBookTicketAction = createAsyncThunk(
     try {
       const res = await API.get(`bookticket/list/${userId}`);
       return {
-        totalTickets: res?.data?.totalTickets,
+        totalTickets: res?.data,
         success: true,
       };
     } catch (error) {

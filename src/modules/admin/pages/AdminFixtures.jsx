@@ -2,13 +2,11 @@
 import React, { useEffect, useState } from "react";
 import AdminHeader from "../components/AdminHeader";
 import Button from "../../../components/common/Button";
-
 import AdminFixtureCard from "../common/AdminFixtureCard";
 import CreateFixtureForm from "../components/CreateFixtureForm";
-import OutlineButton from "../../../components/common/OutlineButton";
 import { useDispatch, useSelector } from "react-redux";
 import { getFixtureAction } from "../../../redux/actions/fixtureAction";
-import { API } from "../../../redux/api/utilis";
+
 
 const AdminFixtures = () => {
   const [showForm, setshowForm] = useState(false);
@@ -40,7 +38,7 @@ const AdminFixtures = () => {
         ) : (
           totalFixtures?.map((fixture) => (
             
-            <AdminFixtureCard key={fixture.id} {...fixture} />
+            <AdminFixtureCard key={fixture.id} {...fixture}/>
           ))
         )}
       </div>
