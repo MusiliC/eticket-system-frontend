@@ -8,7 +8,7 @@ export const addTicketManagementAction = createAsyncThunk(
     try {
       const res = await API.post("ticketmanagement/add", event);
       return {
-        ticketEvent: res?.data?.ticketEvent,
+        ticketEvent: res?.data,
         success: true,
       };
     } catch (error) {
@@ -23,7 +23,7 @@ export const getTicketManagementAction = createAsyncThunk(
     try {
       const res = await API.get("ticketmanagement/list");
       return {
-        ticketEvents: res?.data?.ticketEvents,
+        ticketEvents: res?.data,
         success: true,
       };
     } catch (error) {
@@ -38,7 +38,7 @@ export const getOneTicketManagementAction = createAsyncThunk(
     try {
       const res = await API.get(`ticketmanagement/list/${id}`);
       return {
-        ticketEvent: res?.data?.ticketEvent,
+        ticketEvent: res?.data,
         success: true,
       };
     } catch (error) {

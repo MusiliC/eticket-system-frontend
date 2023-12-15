@@ -25,9 +25,9 @@ export const fixtureSlice = createSlice({
       .addCase(getFixtureAction.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getFixtureAction.fulfilled, (state, action) => {
+      .addCase(getFixtureAction.fulfilled, (state, action) => {      
         state.loading = false;
-        state.totalFixtures = action.payload?.data;
+        state.totalFixtures = action.payload?.totalFixtures;
       })
       .addCase(getFixtureAction.rejected, (state) => {
         state.loading = false;

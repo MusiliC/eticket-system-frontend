@@ -22,10 +22,13 @@ export const addFixtureAction = createAsyncThunk(
     async () => {
       try {
         const res = await API.get("fixture/list");
+        
         return {
-          fixtures: res?.data?.fixtures,
+          totalFixtures: res?.data,
           success: true,
+          
         };
+        
       } catch (error) {
         return error.message;
       }
