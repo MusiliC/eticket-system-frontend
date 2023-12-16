@@ -11,15 +11,17 @@ const AdminTicketManagement = () => {
   const [showForm, setshowForm] = useState(false);
   const dispatch = useDispatch();
 
-  const { loading, ticketEvents } = useSelector(
+  const { loading, ticketEvents,  addingEvent } = useSelector(
     (state) => state.ticketManagementReducer
   );
 
   useEffect(() => {
     dispatch(getTicketManagementAction());
-  }, []);
+  }, [showForm]);
 
-  console.log(ticketEvents);
+  
+
+ 
 
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
@@ -31,7 +33,8 @@ const AdminTicketManagement = () => {
       <div>
         {
           showForm ? (
-            <TicketManageForm />
+            <TicketManageForm addingEvent = {addingEvent} showForm={showForm}
+            setshowForm={setshowForm} />
           ) : loading ? (
             <p className="headerThree">Loading...</p>
           ) : ticketEvents?.length === 0 ? (

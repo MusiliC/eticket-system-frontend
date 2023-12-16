@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../../components/common/FormInputError";
 import Button from "../../../../components/common/Button";
 import { addBookTicketAction } from "../../../../redux/actions/bookTicketAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Loader } from "lucide-react";
 
 const BookTicketForm = () => {
   const {
@@ -14,12 +15,18 @@ const BookTicketForm = () => {
     formState: { errors },
   } = useForm();
 
+  const { addingTicket } = useSelector((state) => state.bookTicketReducer);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleBookTicketData = async (data) => {
     const res = await dispatch(
-      addBookTicketAction({ ...data, userId: 3, fixtureId:5 })
+      addBookTicketAction({ ...data, userId: 3, fixtureId: 5 })
     );
+    if (res.payload.success && !addingTicket) {
+      navigate("/eticket/tickets");
+    }
   };
 
   return (
@@ -128,7 +135,13 @@ const BookTicketForm = () => {
         <Link to={"/eticket/fixtures"}>
           <Button text={"Cancel"} />
         </Link>
-        <button className="outlineButtonStyling">Book Ticket</button>
+        {addingTicket ? (
+          <div className="outlineButtonStyling">
+            <Loader className="w-5 h-5 animate-spin" />
+          </div>
+        ) : (
+          <button className="outlineButtonStyling">Book Ticket</button>
+        )}
       </div>
     </form>
   );

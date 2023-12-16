@@ -4,6 +4,7 @@ import AdminHeader from "../components/AdminHeader";
 import AdminFixtureReportCard from "../common/AdminFixtureReportCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getFixtureAction } from "../../../redux/actions/fixtureAction";
+import { Loader } from "lucide-react";
 
 const AdminFixtureReport = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,6 @@ const AdminFixtureReport = () => {
   const { fixture, totalFixtures, loading } = useSelector(
     (state) => state.fixtureReducer
   );
-
-
 
   useEffect(() => {
     dispatch(getFixtureAction());
@@ -24,7 +23,9 @@ const AdminFixtureReport = () => {
 
       <div>
         {loading ? (
-          <p className="headerThree">Loading...</p>
+          <p className="headerThree flex items-center gap-3">
+            Loading... <Loader className="w-5 h-5 animate-spin" />
+          </p>
         ) : totalFixtures?.length === 0 ? (
           <p>No data Found</p>
         ) : (

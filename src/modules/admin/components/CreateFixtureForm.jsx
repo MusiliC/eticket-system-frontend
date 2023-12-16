@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import OutlineButton from "../../../components/common/OutlineButton";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../components/common/FormInputError";
 import { useDispatch, useSelector } from "react-redux";
 import { getTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
 import { addFixtureAction } from "../../../redux/actions/fixtureAction";
+import { Loader } from "lucide-react";
 
-const CreateFixtureForm = () => {
+const CreateFixtureForm = ({ addingFixture, showForm, setshowForm }) => {
   const {
     register,
     handleSubmit,
@@ -19,7 +19,9 @@ const CreateFixtureForm = () => {
 
   const handleFixtureData = async (data) => {
     const res = await dispatch(addFixtureAction(data));
-   
+    if (res.payload.success) {
+      setshowForm(false);
+    }
   };
 
   const { loading, ticketEvents } = useSelector(
@@ -39,7 +41,7 @@ const CreateFixtureForm = () => {
         <label htmlFor="fixtureDescId" className="labelStyling">
           Select fixture type
         </label>
-        
+
         <select
           name="fixtureDescId"
           {...register("fixtureDescId", {
@@ -170,7 +172,13 @@ const CreateFixtureForm = () => {
         )}
       </div>
       <div className="flex">
-        <button className="outlineButtonStyling">Create Fixture</button>
+        {addingFixture ? (
+          <div className="outlineButtonStyling">
+            <Loader className="w-5 h-5 animate-spin" />
+          </div>
+        ) : (
+          <button className="outlineButtonStyling">Create Fixture</button>
+        )}
       </div>
     </form>
   );

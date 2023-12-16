@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import OutlineButton from "../../../components/common/OutlineButton";
@@ -6,8 +7,10 @@ import { Link } from "react-router-dom";
 import FormInputError from "../../../components/common/FormInputError";
 import { useDispatch } from "react-redux";
 import { addTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
+import { Loader } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const TicketManageForm = () => {
+const TicketManageForm = ({ addingEvent, showForm, setshowForm }) => {
   const {
     register,
     handleSubmit,
@@ -15,9 +18,13 @@ const TicketManageForm = () => {
   } = useForm();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleTicketManagamentData = async (data) => {
     const res = await dispatch(addTicketManagementAction(data));
+    if (res.payload.success) {
+      setshowForm(false);
+    }
   };
 
   return (
@@ -192,7 +199,13 @@ const TicketManageForm = () => {
         )}
       </div>
       <div className="flex">
-        <button className="outlineButtonStyling">Create event</button>
+        {addingEvent ? (
+          <div className="outlineButtonStyling">
+            <Loader className="w-5 h-5 animate-spin" />
+          </div>
+        ) : (
+          <button className="outlineButtonStyling">Create event</button>
+        )}
       </div>
     </form>
   );
