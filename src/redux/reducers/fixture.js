@@ -39,7 +39,7 @@ export const fixtureSlice = createSlice({
       })
       .addCase(getOneFixtureAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.fixture = action.payload?.data;
+        state.fixture = action.payload?.fixture;
       })
       .addCase(getOneFixtureAction.rejected, (state) => {
         state.loading = false;
