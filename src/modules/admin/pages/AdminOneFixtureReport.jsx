@@ -16,11 +16,11 @@ const AdminOneFixtureReport = () => {
     if (id) {
       dispatch(getOneFixtureAction(id));
     }
-    console.log(fixture);
+
   }, [id]);
 
   useEffect(() => {
-    console.log(fixture); // This will log the updated state when it changes
+
   }, [fixture]);
 
   var totalNormaTicketRevenue = fixture?.ticketManagement?.totalNormalTicketsSold * fixture?.ticketManagement?.normalAmount;

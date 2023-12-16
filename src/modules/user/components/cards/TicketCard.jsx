@@ -21,7 +21,7 @@ const TicketCard = ({...ticket}) => {
             <p>{ticket.fixture?.fixtureDate}</p>
         </div>
         <div className='col-span-1 flex lg:items-center  lg:justify-end'>
-            <Link to="./1">
+            <Link to={`${ticket.ticketId}`}>
             <Button text={"View"} />
             </Link>
         </div>

@@ -40,10 +40,10 @@ export const getBookTicketAction = createAsyncThunk(
 );
 
 export const getOneTicketAction = createAsyncThunk(
-  "bookticket/list/id",
+  "bookticket/list/ticket/id",
   async (ticketId) => {
     try {
-      const res = await API.get(`bookticket/list/${ticketId}`);
+      const res = await API.get(`bookticket/list/ticket/${ticketId}`);
       return {
         ticket: res?.data,
         success: true,
