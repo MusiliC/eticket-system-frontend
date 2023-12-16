@@ -45,7 +45,7 @@ const AdminUserReport = () => {
                     </thead>
                     <tbody>
                       <tr className="border-b dark:border-neutral-500">
-                        <td>No user found</td>
+                        <td colSpan="4" className="text-center p-3">No users found</td>
                       </tr>
                     </tbody>
                   </table>

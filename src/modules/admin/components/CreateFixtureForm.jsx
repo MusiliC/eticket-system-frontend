@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import FormInputError from "../../../components/common/FormInputError";
 import { useDispatch, useSelector } from "react-redux";
 import { getTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
+import { addFixtureAction } from "../../../redux/actions/fixtureAction";
 
 const CreateFixtureForm = () => {
   const {
@@ -14,29 +15,31 @@ const CreateFixtureForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const dispatch = useDispatch();
+
+  const handleFixtureData = async (data) => {
+    const res = await dispatch(addFixtureAction(data));
+   
+  };
 
   const { loading, ticketEvents } = useSelector(
     (state) => state.ticketManagementReducer
   );
-
-
- 
 
   useEffect(() => {
     dispatch(getTicketManagementAction());
   }, []);
 
   return (
-    <form className="formTicketContainer" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="formTicketContainer"
+      onSubmit={handleSubmit(handleFixtureData)}
+    >
       <div>
         <label htmlFor="fixtureDescId" className="labelStyling">
           Select fixture type
         </label>
+        
         <select
           name="fixtureDescId"
           {...register("fixtureDescId", {
@@ -167,10 +170,7 @@ const CreateFixtureForm = () => {
         )}
       </div>
       <div className="flex">
-        <button>create</button>
-        <Link>
-          <OutlineButton text={"Create Fixture"} />
-        </Link>
+        <button className="outlineButtonStyling">Create Fixture</button>
       </div>
     </form>
   );

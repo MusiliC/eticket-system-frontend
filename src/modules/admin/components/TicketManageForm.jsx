@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import OutlineButton from "../../../components/common/OutlineButton";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import FormInputError from "../../../components/common/FormInputError";
+import { useDispatch } from "react-redux";
+import { addTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
 
 const TicketManageForm = () => {
   const {
@@ -12,11 +14,17 @@ const TicketManageForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const handleTicketManagamentData = async (data) => {
+    const res = await dispatch(addTicketManagementAction(data));
   };
+
   return (
-    <form className="formTicketContainer" onSubmit={handleSubmit(onSubmit)} >
+    <form
+      className="formTicketContainer"
+      onSubmit={handleSubmit(handleTicketManagamentData)}
+    >
       <div>
         <label htmlFor="fixtureType" className="labelStyling">
           Select fixture type
@@ -32,11 +40,15 @@ const TicketManageForm = () => {
           })}
           className="inputStyling"
         >
-          <option value="" selected disabled hidden>
+          <option defaultValue disabled hidden>
             Fixture type
           </option>
-          <option value="Afcon">Afcon</option>
-          <option value="KPL">KPL</option>
+
+          <option value="KENYA_PREMIER_LEAGUE">Kenya Premier League</option>
+          <option value="MOZZART_CUP">Mozzart Cup</option>
+          <option value="CAF_CHAMPIONS_LEAGUE">CAF Champions League</option>
+          <option value="CAF_CONFEDERATION">CAF Confederation</option>
+          <option value="AFCON">AFCON</option>
         </select>
         {errors?.fixtureType && (
           <FormInputError message={errors?.fixtureType?.message} />
@@ -180,10 +192,7 @@ const TicketManageForm = () => {
         )}
       </div>
       <div className="flex">
-        <button>create event</button>
-        <Link>
-          <OutlineButton text={"Create event"} />
-        </Link>
+        <button className="outlineButtonStyling">Create event</button>
       </div>
     </form>
   );

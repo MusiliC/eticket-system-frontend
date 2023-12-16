@@ -65,6 +65,7 @@ export const ticketSlice = createSlice({
         state.addingTicket = true;
       })
       .addCase(addBookTicketAction.fulfilled, (state, action) => {
+     
         state.addingTicket = false;
         if (action.payload?.ticket) {
           state.totalTickets = [action.payload?.ticket, ...state.totalTickets];

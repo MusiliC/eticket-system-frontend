@@ -19,6 +19,8 @@ const AdminTicketManagement = () => {
     dispatch(getTicketManagementAction());
   }, []);
 
+  console.log(ticketEvents);
+
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <AdminHeader title={"Ticket Management"} />
@@ -65,7 +67,7 @@ const AdminTicketManagement = () => {
                       </thead>
                       <tbody>
                         <tr>
-                          <td>No data found</td>
+                          <td colSpan="7" className="text-center p-3" >No data found</td>
                         </tr>
                       </tbody>
                     </table>

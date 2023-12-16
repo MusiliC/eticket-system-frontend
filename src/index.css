@@ -44,6 +44,14 @@
     @apply flex flex-col items-center justify-center  py-8 mx-auto min-h-[90vh] lg:py-0;
   }
 
+  .outlineButtonStyling{
+    @apply py-2.5 text-sm cursor-pointer font-medium text-[16px] bg-transparent hover:bg-secondary-100 text-secondary-100  hover:text-white px-5 border border-secondary-100 hover:border-transparent rounded-2xl;
+  }
+
+  .normalButtonStyling{
+    @apply py-3 text-sm rounded-2xl px-5 cursor-pointer bg-secondary-100 font-medium text-[16px] text-white outline-none;
+  }
+
 
 
   .profile{

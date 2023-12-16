@@ -8,7 +8,7 @@ export const addFixtureAction = createAsyncThunk(
       try {
         const res = await API.post("fixture/add", fixture);
         return {
-          fixture: res?.data?.fixture,
+          fixture: res?.data,
           success: true,
         };
       } catch (error) {

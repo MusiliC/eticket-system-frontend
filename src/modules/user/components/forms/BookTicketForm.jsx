@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
-import OutlineButton from "../../../../components/common/OutlineButton";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../../components/common/FormInputError";
+import Button from "../../../../components/common/Button";
+import { addBookTicketAction } from "../../../../redux/actions/bookTicketAction";
+import { useDispatch } from "react-redux";
 
 const BookTicketForm = () => {
   const {
@@ -12,12 +14,19 @@ const BookTicketForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const handleBookTicketData = async (data) => {
+    const res = await dispatch(
+      addBookTicketAction({ ...data, userId: 3, fixtureId:5 })
+    );
   };
 
   return (
-    <form className="formTicketContainer" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="formTicketContainer"
+      onSubmit={handleSubmit(handleBookTicketData)}
+    >
       <div>
         <label htmlFor="ticketType" className="labelStyling">
           Select ticket type
@@ -33,7 +42,7 @@ const BookTicketForm = () => {
           })}
           className="inputStyling"
         >
-          <option value="" selected disabled hidden>
+          <option value="" defaultValue disabled hidden>
             Ticket type
           </option>
           <option value="VIP">VIP</option>
@@ -73,14 +82,14 @@ const BookTicketForm = () => {
 
       {/* phone number */}
       <div>
-        <label htmlFor="user_number" className="labelStyling">
+        <label htmlFor="phoneNumber" className="labelStyling">
           Phone Number
         </label>
         <input
           type="text"
-          name="user_number"
-          id="user_number"
-          {...register("user_number", {
+          name="phoneNumber"
+          id="phoneNumber"
+          {...register("userDetails.phoneNumber", {
             required: {
               value: true,
               message: "Field is required",
@@ -88,38 +97,38 @@ const BookTicketForm = () => {
           })}
           className="inputStyling"
         />
-        {errors?.user_number && (
-          <FormInputError message={errors?.user_number?.message} />
+        {errors?.userDetails?.phoneNumber && (
+          <FormInputError message={errors?.userDetails?.phoneNumber?.message} />
         )}
       </div>
 
       {/* user email */}
       <div>
-        <label htmlFor="user_email" className="labelStyling">
+        <label htmlFor="userEmail" className="labelStyling">
           Email
         </label>
         <input
           type="email"
-          name="user_email"
-          {...register("user_email", {
+          name="userEmail"
+          {...register("userDetails.userEmail", {
             required: {
               value: true,
               message: "Field is required",
             },
           })}
-          id="user_email"
+          id="userEmail"
           className="inputStyling"
         />
-        {errors?.user_email && (
-          <FormInputError message={errors?.user_email?.message} />
+        {errors?.userDetails?.userEmail && (
+          <FormInputError message={errors?.userDetails?.userEmail?.message} />
         )}
       </div>
 
-      <div className="flex">
-        <button>Book Ticket</button>
-        <Link>
-          <OutlineButton text={"Book Ticket"} />
+      <div className="flex justify-between items-center">
+        <Link to={"/eticket/fixtures"}>
+          <Button text={"Cancel"} />
         </Link>
+        <button className="outlineButtonStyling">Book Ticket</button>
       </div>
     </form>
   );
