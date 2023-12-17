@@ -19,6 +19,7 @@ import AdminPageNotFound from "./modules/admin/pages/AdminPageNotFound"
 import UserPageNotFound from "./modules/user/pages/UserPageNotFound"
 import AdminDashLayout from "./modules/admin/layout/AdminDashLayout"
 import UserHomeLayout from "./modules/user/layout/UserHomeLayout"
+import UpdateFixtureForm from "./modules/forms/UpdateFixtureForm"
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
       path: "/admin", element: <AdminDashLayout />,
       children: [
         { index: true, element: <AdminFixtures /> },
+        { path: "update/:id", element: <UpdateFixtureForm /> },
         { path: "ticketmanagement", element: <AdminTicketManagement /> },
         { path: "report", element: <AdminFixtureReport /> },
         { path: "report/:id", element: <AdminOneFixtureReport /> },

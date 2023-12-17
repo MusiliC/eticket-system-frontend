@@ -20,10 +20,6 @@ const AdminFixtureCard = ({ ...fixture }) => {
     const res = await dispatch(deleteFixtureAction(id));
   };
 
-  useEffect(() => {
-    dispatch(getFixtureAction());
-  }, [deletingFixture]);
-
   return (
     <div
       className={`grid grid-cols-2 my-4 md:grid-cols-3 lg:grid-cols-5 gap-5 w-full hover:bg-secondary-500 hover:cursor-pointer  border-b-[1px] border-primary-100 p-[10px]`}
@@ -43,7 +39,7 @@ const AdminFixtureCard = ({ ...fixture }) => {
         <p>{fixture?.fixtureDate}</p>
       </div>
       <div className="col-span-1 flex gap-3 lg:items-center  lg:justify-end">
-        <Link>
+        <Link to={`/admin/update/${fixture.id}`}>
           <OutlineButton text={"Edit"} />
         </Link>
 

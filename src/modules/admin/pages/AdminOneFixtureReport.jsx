@@ -16,22 +16,27 @@ const AdminOneFixtureReport = () => {
     if (id) {
       dispatch(getOneFixtureAction(id));
     }
-
   }, [id]);
 
-  useEffect(() => {
+  useEffect(() => {}, [fixture]);
 
-  }, [fixture]);
-
-  var totalNormaTicketRevenue = fixture?.ticketManagement?.totalNormalTicketsSold * fixture?.ticketManagement?.normalAmount;
-  var totalVipTicketRevenue = fixture?.ticketManagement?.totalVipTicketsSold * fixture?.ticketManagement?.vipAmount;
+  var totalNormaTicketRevenue =
+    fixture?.ticketManagement?.totalNormalTicketsSold *
+    fixture?.ticketManagement?.normalAmount;
+  var totalVipTicketRevenue =
+    fixture?.ticketManagement?.totalVipTicketsSold *
+    fixture?.ticketManagement?.vipAmount;
 
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <AdminHeader title={"Fixture Report"} />
 
       <div>
-        <TicketSaleCard totalTickets = {fixture?.ticketManagement?.totalTickets} totalVip = {fixture?.ticketManagement?.totalVip}  totalNormal = {fixture?.ticketManagement?.totalNormal}  />
+        <TicketSaleCard
+          totalTickets={fixture?.ticketManagement?.totalTickets}
+          totalVip={fixture?.ticketManagement?.totalVip}
+          totalNormal={fixture?.ticketManagement?.totalNormal}
+        />
       </div>
       <div className="mt-10">
         <div className="flex flex-col">
@@ -53,47 +58,59 @@ const AdminOneFixtureReport = () => {
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">Fixture</td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {`${fixture?.homeTeam} vs ${fixture?.awayTeam}`} 
+                        {`${fixture?.homeTeam} vs ${fixture?.awayTeam}`}
                       </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
-                       Fixture type
+                        Fixture type
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4"> {fixture?.ticketManagement?.fixtureType}</td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        {" "}
+                        {fixture?.ticketManagement?.fixtureType}
+                      </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
                         Total Tickets Sold
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4">{`${fixture?.ticketManagement?.totalVipTicketsSold + fixture?.ticketManagement?.totalNormalTicketsSold}`}  </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        {`${
+                          fixture?.ticketManagement?.totalVipTicketsSold +
+                          fixture?.ticketManagement?.totalNormalTicketsSold
+                        }`}{" "}
+                      </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
                         Total vip Sold
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4">{fixture?.ticketManagement?.totalVipTicketsSold} </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        {fixture?.ticketManagement?.totalVipTicketsSold}{" "}
+                      </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
                         Total vip revenue
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                      {totalVipTicketRevenue}
+                        {totalVipTicketRevenue}
                       </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
                         Total Normal Sold
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4">{fixture.ticketManagement?.totalNormalTicketsSold}</td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        {fixture.ticketManagement?.totalNormalTicketsSold}
+                      </td>
                     </tr>
                     <tr className="trStyling">
                       <td className="whitespace-nowrap px-6 py-4">
                         Total normal revenue
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                      {totalNormaTicketRevenue}
+                        {totalNormaTicketRevenue}
                       </td>
                     </tr>
                     <tr className="trStyling">

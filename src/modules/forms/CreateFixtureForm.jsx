@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import FormInputError from "../../../components/common/FormInputError";
+import FormInputError from "../../components/common/FormInputError";
 import { useDispatch, useSelector } from "react-redux";
-import { getTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
-import { addFixtureAction } from "../../../redux/actions/fixtureAction";
+import { getTicketManagementAction } from "../../redux/actions/ticketManagementAction";
+import { addFixtureAction } from "../../redux/actions/fixtureAction";
 import { Loader } from "lucide-react";
 
 const CreateFixtureForm = ({ addingFixture, showForm, setshowForm }) => {

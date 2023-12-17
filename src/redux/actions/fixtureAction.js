@@ -50,6 +50,22 @@ export const addFixtureAction = createAsyncThunk(
     }
   );
 
+  export const updateFixtureAction = createAsyncThunk(
+    "fixture/update",
+    async (id, fixture) => {
+      try {
+        const res = await API.post(`fixture/update/${id}`, fixture);
+        return {
+          fixture: res?.data,
+          success: true,
+        };
+      } catch (error) {
+        return error.message;
+      }
+    }
+  );
+  
+
   export const deleteFixtureAction = createAsyncThunk(
     "fixture/delete/id",
     async (id) => {

@@ -5,6 +5,7 @@ import {
   deleteFixtureAction,
   getFixtureAction,
   getOneFixtureAction,
+  updateFixtureAction,
 } from "../actions/fixtureAction";
 
 const initialState = {
@@ -51,9 +52,10 @@ export const fixtureSlice = createSlice({
         state.deletingFixture = true;
       })
       .addCase(deleteFixtureAction.fulfilled, (state, action) => {
-        state.totalFixtures = state.totalFixtures.filter(fixture => fixture?.id !== action.payload?._id);
+        state.totalFixtures = state.totalFixtures.filter(
+          (fixture) => fixture?.id !== action.payload?._id
+        );
         state.deletingFixture = false;
-        
       })
       .addCase(deleteFixtureAction.rejected, (state) => {
         state.deletingFixture = false;
@@ -74,6 +76,21 @@ export const fixtureSlice = createSlice({
       })
       .addCase(addFixtureAction.rejected, (state) => {
         state.addingFixture = false;
+      });
+
+    builder
+      .addCase(updateFixtureAction.pending, (state) => {
+        state.updatingFixture = true;
+      })
+      .addCase(updateFixtureAction.fulfilled, (state, action) => {
+        state.updatingFixture = false;
+
+        state.fixture = action.payload?.fixture
+          ? action.payload.fixture
+          : state.fixture;
+      })
+      .addCase(updateFixtureAction.rejected, (state) => {
+        state.updatingFixture = false;
       });
   },
 });

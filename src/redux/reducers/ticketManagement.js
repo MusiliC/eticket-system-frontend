@@ -5,6 +5,7 @@ import {
   deleteTicketEventAction,
   getOneTicketManagementAction,
   getTicketManagementAction,
+  updateTicketManagementAction,
 } from "../actions/ticketManagementAction";
 
 const initialState = {
@@ -36,7 +37,7 @@ export const ticketManagementSlice = createSlice({
 
     builder
       .addCase(addTicketManagementAction.pending, (state) => {
-        state.addingEvent = true;      
+        state.addingEvent = true;
       })
       .addCase(addTicketManagementAction.fulfilled, (state, action) => {
         state.addingEvent = false;
@@ -51,7 +52,22 @@ export const ticketManagementSlice = createSlice({
         state.addingEvent = false;
       });
 
-      builder
+    builder
+      .addCase(updateTicketManagementAction.pending, (state) => {
+        state.updatingEvent = true;
+      })
+      .addCase(updateTicketManagementAction.fulfilled, (state, action) => {
+        state.updatingEvent = false;
+
+        state.event = action.payload?.ticketEvent
+          ? state.action.payload
+          : state.event;
+      })
+      .addCase(updateTicketManagementAction.rejected, (state) => {
+        state.updatingEvent = false;
+      });
+
+    builder
       .addCase(getOneTicketManagementAction.pending, (state) => {
         state.loading = true;
       })
@@ -68,7 +84,9 @@ export const ticketManagementSlice = createSlice({
         state.deletingEvent = true;
       })
       .addCase(deleteTicketEventAction.fulfilled, (state, action) => {
-        state.ticketEvents = state.ticketEvents.filter(event => event?.id !== action.payload?._id);
+        state.ticketEvents = state.ticketEvents.filter(
+          (event) => event?.id !== action.payload?._id
+        );
         state.deletingEvent = false;
       })
       .addCase(deleteTicketEventAction.rejected, (state) => {

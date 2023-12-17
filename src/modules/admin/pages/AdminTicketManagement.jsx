@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import AdminHeader from "../components/AdminHeader";
 import Button from "../../../components/common/Button";
-import TicketManageForm from "../components/TicketManageForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
 import TicketManagementTable from "../components/TicketManagementTable";
+import TicketManageForm from "../../forms/TicketManageForm";
 
 const AdminTicketManagement = () => {
   const [showForm, setshowForm] = useState(false);

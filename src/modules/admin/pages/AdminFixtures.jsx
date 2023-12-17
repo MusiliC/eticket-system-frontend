@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import AdminHeader from "../components/AdminHeader";
 import Button from "../../../components/common/Button";
 import AdminFixtureCard from "../common/AdminFixtureCard";
-import CreateFixtureForm from "../components/CreateFixtureForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getFixtureAction } from "../../../redux/actions/fixtureAction";
+import CreateFixtureForm from "../../forms/CreateFixtureForm";
 
 const AdminFixtures = () => {
   const [showForm, setshowForm] = useState(false);

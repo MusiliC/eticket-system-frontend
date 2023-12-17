@@ -47,6 +47,22 @@ export const getOneTicketManagementAction = createAsyncThunk(
   }
 );
 
+export const updateTicketManagementAction = createAsyncThunk(
+  "ticketmanagement/update/id",
+  async (id, event) => {
+    try {
+      const res = await API.post(`ticketmanagement/update/${id}`, event);
+      return {
+        ticketEvent: res?.data,
+        success: true,
+      };
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+
 export const deleteTicketEventAction = createAsyncThunk(
   "ticketmanagement/delete/id",
   async (id) => {

@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import OutlineButton from "../../../components/common/OutlineButton";
+import OutlineButton from "../../components/common/OutlineButton";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
-import FormInputError from "../../../components/common/FormInputError";
+import FormInputError from "../../components/common/FormInputError";
 import { useDispatch } from "react-redux";
-import { addTicketManagementAction } from "../../../redux/actions/ticketManagementAction";
+import { addTicketManagementAction } from "../../redux/actions/ticketManagementAction";
 import { Loader } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
