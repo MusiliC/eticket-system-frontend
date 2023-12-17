@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
-import { getUsers } from "../actions/authAction";
+import { getUsers, registerUserAction } from "../actions/authAction";
 
 const initialState = {
   users: [],
@@ -16,16 +16,29 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(getUsers.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getUsers.fulfilled, (state, action) => {      
-      state.loading = false;
-      state.users = action.payload?.users;
-    })
-    .addCase(getUsers.rejected, (state) => {
-      state.loading = false;
-    });
+      .addCase(getUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload?.users;
+      })
+      .addCase(getUsers.rejected, (state) => {
+        state.loading = false;
+      });
+    builder
+      .addCase(registerUserAction.pending, (state) => {
+        state.signUpLoading = true;
+      })
+      .addCase(registerUserAction.fulfilled, (state, action) => {
+        state.signUpLoading = false;
+        if (action.payload?.user) {
+          state.users = [action.payload?.user, ...state.users];
+        }
+      })
+      .addCase(registerUserAction.rejected, (state) => {
+        state.signUpLoading = false;
+      });
   },
 });
 
