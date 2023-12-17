@@ -49,3 +49,19 @@ export const addFixtureAction = createAsyncThunk(
       }
     }
   );
+
+  export const deleteFixtureAction = createAsyncThunk(
+    "fixture/delete/id",
+    async (id) => {
+      try {
+        const res = await API.delete(`fixture/delete/${id}`);
+        return {
+          _id: res?.data,
+          success: true,
+          message: "Fixture deleted!"
+        };
+      } catch (error) {
+        return error.messag;
+      }
+    }
+  );

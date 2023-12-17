@@ -46,3 +46,19 @@ export const getOneTicketManagementAction = createAsyncThunk(
     }
   }
 );
+
+export const deleteTicketEventAction = createAsyncThunk(
+  "ticketmanagement/delete/id",
+  async (id) => {
+    try {
+      const res = await API.delete(`ticketmanagement/delete/${id}`);
+      return {
+        _id: res?.data,
+        success: true,
+        message: "Event deleted!"
+      };
+    } catch (error) {
+      return error.messag;
+    }
+  }
+);

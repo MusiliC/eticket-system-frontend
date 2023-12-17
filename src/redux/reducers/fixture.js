@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addFixtureAction,
+  deleteFixtureAction,
   getFixtureAction,
   getOneFixtureAction,
 } from "../actions/fixtureAction";
@@ -25,7 +26,7 @@ export const fixtureSlice = createSlice({
       .addCase(getFixtureAction.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getFixtureAction.fulfilled, (state, action) => {      
+      .addCase(getFixtureAction.fulfilled, (state, action) => {
         state.loading = false;
         state.totalFixtures = action.payload?.totalFixtures;
       })
@@ -43,6 +44,19 @@ export const fixtureSlice = createSlice({
       })
       .addCase(getOneFixtureAction.rejected, (state) => {
         state.loading = false;
+      });
+
+    builder
+      .addCase(deleteFixtureAction.pending, (state) => {
+        state.deletingFixture = true;
+      })
+      .addCase(deleteFixtureAction.fulfilled, (state, action) => {
+        state.totalFixtures = state.totalFixtures.filter(fixture => fixture?.id !== action.payload?._id);
+        state.deletingFixture = false;
+        
+      })
+      .addCase(deleteFixtureAction.rejected, (state) => {
+        state.deletingFixture = false;
       });
 
     builder

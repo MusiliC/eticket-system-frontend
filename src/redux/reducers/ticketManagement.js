@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addTicketManagementAction,
+  deleteTicketEventAction,
   getOneTicketManagementAction,
   getTicketManagementAction,
 } from "../actions/ticketManagementAction";
@@ -50,7 +51,7 @@ export const ticketManagementSlice = createSlice({
         state.addingEvent = false;
       });
 
-    builder
+      builder
       .addCase(getOneTicketManagementAction.pending, (state) => {
         state.loading = true;
       })
@@ -60,6 +61,18 @@ export const ticketManagementSlice = createSlice({
       })
       .addCase(getOneTicketManagementAction.rejected, (state) => {
         state.loading = false;
+      });
+
+    builder
+      .addCase(deleteTicketEventAction.pending, (state) => {
+        state.deletingEvent = true;
+      })
+      .addCase(deleteTicketEventAction.fulfilled, (state, action) => {
+        state.ticketEvents = state.ticketEvents.filter(event => event?.id !== action.payload?._id);
+        state.deletingEvent = false;
+      })
+      .addCase(deleteTicketEventAction.rejected, (state) => {
+        state.deletingEvent = false;
       });
   },
 });

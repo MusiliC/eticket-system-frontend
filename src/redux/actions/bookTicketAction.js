@@ -68,3 +68,19 @@ export const getUserTickets = createAsyncThunk(
     }
   }
 );
+
+export const deleteTicketAction = createAsyncThunk(
+  "bookticket/delete/id",
+  async (id) => {
+    try {
+      const res = await API.get(`bookticket/delete/${id}`);
+      return {
+        _id: res?.data,
+        success: true,
+        message: "Ticket deleted"
+      };
+    } catch (error) {
+      return error.messag;
+    }
+  }
+);

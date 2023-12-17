@@ -2,11 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addBookTicketAction,
+  deleteTicketAction,
   getBookTicketAction,
   getOneTicketAction,
   getUserTickets,
 } from "../actions/bookTicketAction";
-
 
 const initialState = {
   ticket: {},
@@ -40,13 +40,13 @@ export const ticketSlice = createSlice({
       .addCase(getUserTickets.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getUserTickets.fulfilled, (state,action) => {
+      .addCase(getUserTickets.fulfilled, (state, action) => {
         state.loading = false;
-        state.totalUserTickets = action.payload?.totalUserTickets
+        state.totalUserTickets = action.payload?.totalUserTickets;
       })
       .addCase(getUserTickets.rejected, (state) => {
         state.loading = false;
-      })
+      });
 
     builder
       .addCase(getOneTicketAction.pending, (state) => {
@@ -56,16 +56,29 @@ export const ticketSlice = createSlice({
         state.loading = false;
         state.ticket = action.payload?.ticket;
       })
-      .addCase(getOneTicketAction.rejected,(state) => {
-        state.loading  = false;
+      .addCase(getOneTicketAction.rejected, (state) => {
+        state.loading = false;
+      });
+
+    builder
+      .addCase(deleteTicketAction.pending, (state) => {
+        state.deletingTicket = true;
       })
+      .addCase(deleteTicketAction.fulfilled, (state, action) => {
+        state.totalTickets = state.totalTickets.filter(
+          (ticket) => ticket?.ticketId !== action.payload?._id
+        );
+        state.deletingTicket = false;
+      })
+      .addCase(deleteTicketAction.rejected, (state) => {
+        state.deletingTicket = false;
+      });
 
     builder
       .addCase(addBookTicketAction.pending, (state) => {
         state.addingTicket = true;
       })
       .addCase(addBookTicketAction.fulfilled, (state, action) => {
-     
         state.addingTicket = false;
         if (action.payload?.ticket) {
           state.totalTickets = [action.payload?.ticket, ...state.totalTickets];
