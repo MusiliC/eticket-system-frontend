@@ -1,47 +1,67 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { Link } from "react-router-dom";
-import OutlineButton from "../../../components/common/OutlineButton";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import FormInputError from "../../../components/common/FormInputError";
+import FormInputError from "../../components/common/FormInputError";
+import { useDispatch, useSelector } from "react-redux";
+import { getTicketManagementAction } from "../../redux/actions/ticketManagementAction";
+import { addFixtureAction } from "../../redux/actions/fixtureAction";
+import { Loader } from "lucide-react";
 
-const CreateFixtureForm = () => {
+const CreateFixtureForm = ({ addingFixture, showForm, setshowForm }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const handleFixtureData = async (data) => {
+    const res = await dispatch(addFixtureAction(data));
+    if (res.payload.success) {
+      setshowForm(false);
+    }
   };
 
+  const { loading, ticketEvents } = useSelector(
+    (state) => state.ticketManagementReducer
+  );
+
+  useEffect(() => {
+    dispatch(getTicketManagementAction());
+  }, []);
+
   return (
-    <form className="formTicketContainer" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="formTicketContainer"
+      onSubmit={handleSubmit(handleFixtureData)}
+    >
       <div>
-        <label htmlFor="fixtureType" className="labelStyling">
+        <label htmlFor="fixtureDescId" className="labelStyling">
           Select fixture type
         </label>
+
         <select
-          name="fixtureType"
-          {...register("fixtureType", {
+          name="fixtureDescId"
+          {...register("fixtureDescId", {
             required: {
               value: true,
               message: "Field is required",
             },
           })}
-          id="fixtureType"
+          id="fixtureDescId"
           className="inputStyling"
         >
-          <option value="" selected disabled hidden>
-            Fixture type
-          </option>
-          <option value="Afcon">Afcon</option>
-          <option value="KPL">KPL</option>
+          {ticketEvents?.map((event) => (
+            <option key={event.id} value={event.id}>
+              {event.fixtureType}
+            </option>
+          ))}
         </select>
 
-        {errors?.fixtureType && (
-          <FormInputError message={errors?.fixtureType?.message} />
+        {errors?.fixtureDescId && (
+          <FormInputError message={errors?.fixtureDescId?.message} />
         )}
       </div>
       {/* fixture time */}
@@ -152,10 +172,13 @@ const CreateFixtureForm = () => {
         )}
       </div>
       <div className="flex">
-        <button>create</button>
-        <Link>
-          <OutlineButton text={"Create Fixture"} />
-        </Link>
+        {addingFixture ? (
+          <div className="outlineButtonStyling">
+            <Loader className="w-5 h-5 animate-spin" />
+          </div>
+        ) : (
+          <button className="outlineButtonStyling">Create Fixture</button>
+        )}
       </div>
     </form>
   );

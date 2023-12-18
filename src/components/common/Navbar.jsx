@@ -1,15 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userLinks } from "../constants";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import menu from "/public/menu.svg";
 import close from "/public/close.svg";
-import { buttons } from "../../../style";
-import Button from "./Button";
+
 import OutlineButton from "./OutlineButton";
+import { logoutUser } from "../../redux/reducers/auth";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   dispatch(logoutUser());
+  // };
+
+
 
   return (
     <section className=" fixed top-0 z-30 bg-white  w-full shadow">
@@ -48,9 +58,9 @@ const Navbar = () => {
 
           {/* contact */}
           <div className="hidden md:flex">
-            <Link href="/contact">
+            <div >
               <OutlineButton text={"Logout"} />
-            </Link>
+            </div>
           </div>
 
           {/* mobile */}
@@ -94,7 +104,7 @@ const Navbar = () => {
                   onClick={() => setToggle(false)}
                   className="font-poppins font-normal cursor-pointer text-[16px] text-white "
                 >
-                  <Link href={"/contact"}>Logout</Link>
+                  <p>Logout</p>
                 </li>
               </ul>
             </div>
