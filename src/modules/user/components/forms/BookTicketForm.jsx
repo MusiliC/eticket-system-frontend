@@ -23,7 +23,7 @@ const BookTicketForm = ({ id }) => {
 
   const handleBookTicketData = async (data) => {
     setShowConfirmation(true);
-    setBookTicketData({ id, ...data });
+    setBookTicketData({ fixtureId:id, ...data });
   };
 
   return (

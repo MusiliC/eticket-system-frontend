@@ -5,6 +5,7 @@ import { handleApiError, API } from "../api/utilis";
 export const addFixtureAction = createAsyncThunk(
   "fixture/add",
   async (fixture) => {
+   
     try {
       const res = await API.post("fixture/add", fixture);
       return {
@@ -47,11 +48,12 @@ export const getOneFixtureAction = createAsyncThunk(
 
 export const updateFixtureAction = createAsyncThunk(
   "fixture/update",
-  async ({ id, fixture }) => {
+  async (fixture) => {
+
+    console.log("fixture ->>>" + fixture);
     try {
-      const res = await API.put(`fixture/update/${id}`, fixture);
-      console.log(id);
-      console.log(fixture);
+      const res = await API.put(`fixture/update/${fixture.id}`, fixture);
+     
       return {
         fixture: res?.data,
         success: true,

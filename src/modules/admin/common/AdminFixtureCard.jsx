@@ -17,7 +17,7 @@ const AdminFixtureCard = ({ ...fixture }) => {
   const { deletingFixture } = useSelector((state) => state.fixtureReducer);
 
   const handleFixtureDelete = async (id) => {
-    const res = await dispatch(deleteFixtureAction(id));
+    dispatch(deleteFixtureAction(id));
   };
 
   return (
@@ -43,7 +43,7 @@ const AdminFixtureCard = ({ ...fixture }) => {
           <OutlineButton text={"Edit"} />
         </Link>
 
-        <div onClick={() => handleFixtureDelete(fixture.id)}>
+        <div onClick={(id) => handleFixtureDelete(fixture.id)}>
           {deletingFixture ? (
             <div className="outlineButtonStyling">
               <Loader className="w-5 h-5 animate-spin" />

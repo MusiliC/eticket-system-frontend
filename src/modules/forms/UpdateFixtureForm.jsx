@@ -32,8 +32,8 @@ const UpdateFixtureForm = () => {
   const dispatch = useDispatch();
 
   const handleFixtureData = async (data) => {
-    const res = await dispatch(updateFixtureAction({ id, ...data }));
-    //console.log({id,...data})
+    const res = await dispatch(updateFixtureAction({ id, ...data }));  
+   // console.log({id,...data});  
     navigate("/admin");
   };
 

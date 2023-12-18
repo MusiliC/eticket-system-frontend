@@ -30,10 +30,10 @@ const ConfirmDetails = ({
   };
 
   useEffect(() => {
-    if (bookTicketData.id) {
-      dispatch(getOneFixtureAction(bookTicketData.id));     
+    if (bookTicketData.fixtureId) {
+      dispatch(getOneFixtureAction(bookTicketData.fixtureId));     
     }
-  }, [bookTicketData.id]);
+  }, [bookTicketData.fixtureId]);
 
   useEffect(() => {
     //console.log(ticket);
@@ -55,14 +55,14 @@ const ConfirmDetails = ({
         <div className="md:w-[70%] mx-auto  flex flex-col gap-4">
           {bookTicketData.ticketType === "VIP" ? (
             <div className="detailStyling">
-              <p>Total amount</p>
+              <p className="font-semibold text-lg">Total amount</p>
               <p>
                 {vipAmount * totalTickets}
               </p>
             </div>
           ) : (
             <div className="detailStyling">
-              <p>Total amount</p>
+              <p className="font-semibold text-lg">Total amount</p>
               <p>
                 {normalAmount * totalTickets}
               </p>
@@ -123,7 +123,7 @@ const ConfirmDetails = ({
                 <Loader className="w-5 h-5 animate-spin" />
               </div>
             ) : (
-              <button className="outlineButtonStyling">
+              <button className="outlineButtonStyling" onClick={handleBookTicketData}>
                 Proceed to Payment
               </button>
             )}

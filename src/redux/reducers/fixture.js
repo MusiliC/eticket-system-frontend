@@ -84,10 +84,8 @@ export const fixtureSlice = createSlice({
       })
       .addCase(updateFixtureAction.fulfilled, (state, action) => {
         state.updatingFixture = false;
-
         state.fixture = action.payload?.fixture
-          ? action.payload.fixture
-          : state.fixture;
+          
       })
       .addCase(updateFixtureAction.rejected, (state, action) => {
         state.updatingFixture = false;
