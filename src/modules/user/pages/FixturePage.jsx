@@ -12,6 +12,8 @@ const FixturePage = () => {
     (state) => state.fixtureReducer
   );
 
+
+
   useEffect(() => {
     dispatch(getFixtureAction());
   }, []);

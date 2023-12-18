@@ -34,7 +34,7 @@ function App() {
     path: "/eticket", element: <UserHomeLayout />,
     children:[
     { index: true, element: <UserHome/> },
-    { path: "book", element: <BookTicket/> },
+    { path: "book/:id", element: <BookTicket/> },
   
     { path: "fixtures", element: <FixturePage/> },
     { path: "tickets", element: <UserTickets/> },

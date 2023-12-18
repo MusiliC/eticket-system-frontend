@@ -1,15 +1,16 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../../components/common/FormInputError";
 import Button from "../../../../components/common/Button";
-import { addBookTicketAction } from "../../../../redux/actions/bookTicketAction";
-import { useDispatch, useSelector } from "react-redux";
+
+import {  useSelector } from "react-redux";
 import { Loader } from "lucide-react";
 import ConfirmDetails from "../../pages/ConfirmDetails";
 
-const BookTicketForm = () => {
+const BookTicketForm = ({ id }) => {
   const {
     register,
     handleSubmit,
@@ -18,22 +19,21 @@ const BookTicketForm = () => {
 
   const { addingTicket } = useSelector((state) => state.bookTicketReducer);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [bookTicketData, setBookTicketData] = useState({})
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [bookTicketData, setBookTicketData] = useState({});
 
   const handleBookTicketData = async (data) => {
-    setShowConfirmation(true)  
-    setBookTicketData(data)  
+    setShowConfirmation(true);
+    setBookTicketData({ id, ...data });
   };
-
- 
 
   return (
     <>
       {showConfirmation ? (
-        <ConfirmDetails showConfirmation = {showConfirmation} setShowConfirmation = {setShowConfirmation}  bookTicketData = {bookTicketData}/>
+        <ConfirmDetails
+          showConfirmation={showConfirmation}
+          setShowConfirmation={setShowConfirmation}
+          bookTicketData={bookTicketData}
+        />
       ) : (
         <form
           className="formTicketContainer"
