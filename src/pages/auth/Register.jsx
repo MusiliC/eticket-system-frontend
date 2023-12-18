@@ -40,7 +40,7 @@ const Register = () => {
             <h1 className="headingTwo">Create account</h1>
             <form
               className="space-y-4 "
-              action="#"
+            
               onSubmit={handleSubmit(handleUserRegisterData)}
             >
               <div>

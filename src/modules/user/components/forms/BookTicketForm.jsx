@@ -1,21 +1,22 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormInputError from "../../../../components/common/FormInputError";
 import Button from "../../../../components/common/Button";
 
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Loader } from "lucide-react";
 import ConfirmDetails from "../../pages/ConfirmDetails";
 
 const BookTicketForm = ({ id }) => {
   const {
-    register,
+    register,   
     handleSubmit,
     formState: { errors },
   } = useForm();
+
 
   const { addingTicket } = useSelector((state) => state.bookTicketReducer);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -23,8 +24,10 @@ const BookTicketForm = ({ id }) => {
 
   const handleBookTicketData = async (data) => {
     setShowConfirmation(true);
-    setBookTicketData({ fixtureId:id, ...data });
+    setBookTicketData({ fixtureId: id, ...data });
   };
+
+
 
   return (
     <>

@@ -16,13 +16,14 @@ const ConfirmDetails = ({
   const { addingTicket } = useSelector((state) => state.bookTicketReducer);
 
   const { fixture } = useSelector((state) => state.fixtureReducer);
+  const { userId } = useSelector((state) => state.authReducer);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleBookTicketData = async (data) => {
     const res = await dispatch(
-      addBookTicketAction({ ...bookTicketData, userId: 3})
+      addBookTicketAction({ ...bookTicketData, userId: userId })
     );
     if (res.payload.success && !addingTicket) {
       navigate("/eticket/tickets");
@@ -31,7 +32,7 @@ const ConfirmDetails = ({
 
   useEffect(() => {
     if (bookTicketData.fixtureId) {
-      dispatch(getOneFixtureAction(bookTicketData.fixtureId));     
+      dispatch(getOneFixtureAction(bookTicketData.fixtureId));
     }
   }, [bookTicketData.fixtureId]);
 
@@ -56,19 +57,15 @@ const ConfirmDetails = ({
           {bookTicketData.ticketType === "VIP" ? (
             <div className="detailStyling">
               <p className="font-semibold text-lg">Total amount</p>
-              <p>
-                {vipAmount * totalTickets}
-              </p>
+              <p>{vipAmount * totalTickets}</p>
             </div>
           ) : (
             <div className="detailStyling">
               <p className="font-semibold text-lg">Total amount</p>
-              <p>
-                {normalAmount * totalTickets}
-              </p>
+              <p>{normalAmount * totalTickets}</p>
             </div>
           )}
-       
+
           {bookTicketData.ticketType === "VIP" ? (
             <div className="detailStyling">
               <p>Vip Ticket Amount</p>
@@ -123,7 +120,10 @@ const ConfirmDetails = ({
                 <Loader className="w-5 h-5 animate-spin" />
               </div>
             ) : (
-              <button className="outlineButtonStyling" onClick={handleBookTicketData}>
+              <button
+                className="outlineButtonStyling"
+                onClick={handleBookTicketData}
+              >
                 Proceed to Payment
               </button>
             )}

@@ -7,9 +7,18 @@ import close from "/public/close.svg";
 import { buttons } from "../../../style";
 import Button from "./Button";
 import OutlineButton from "./OutlineButton";
+import { logoutUser } from "../../redux/reducers/auth";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
+
+
+	const handleLogout = () => {
+		localStorage.clear();
+		dispatch(logoutUser());
+	};
 
   return (
     <section className=" fixed top-0 z-30 bg-white  w-full shadow">
@@ -48,9 +57,9 @@ const Navbar = () => {
 
           {/* contact */}
           <div className="hidden md:flex">
-            <Link href="/contact">
+            <div onClick={() => handleLogout}>
               <OutlineButton text={"Logout"} />
-            </Link>
+            </div>
           </div>
 
           {/* mobile */}
@@ -94,7 +103,7 @@ const Navbar = () => {
                   onClick={() => setToggle(false)}
                   className="font-poppins font-normal cursor-pointer text-[16px] text-white "
                 >
-                  <Link href={"/contact"}>Logout</Link>
+                  <p onClick={() => handleLogout}>Logout</p>
                 </li>
               </ul>
             </div>
