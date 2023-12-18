@@ -7,7 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTicketManagementAction } from "../../redux/actions/ticketManagementAction";
 
 import { Loader } from "lucide-react";
-import { updateFixtureAction, getOneFixtureAction } from "../../redux/actions/fixtureAction";
+import {
+  updateFixtureAction,
+  getOneFixtureAction,
+} from "../../redux/actions/fixtureAction";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminHeader from "../admin/components/AdminHeader";
 import Button from "../../components/common/Button";
@@ -16,17 +19,21 @@ const UpdateFixtureForm = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const { fixture, updatingFixture } = useSelector((state) => state.fixtureReducer);
+  const { fixture, updatingFixture } = useSelector(
+    (state) => state.fixtureReducer
+  );
 
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const handleFixtureData = async (data) => {
-    const res = await dispatch(updateFixtureAction(id, data));
+    const res = await dispatch(updateFixtureAction({ id, ...data }));
+    //console.log({id,...data})
     navigate("/admin");
   };
 
@@ -36,12 +43,25 @@ const UpdateFixtureForm = () => {
 
   useEffect(() => {
     dispatch(getTicketManagementAction());
-  }, []);
+  }, [id]);
 
   useEffect(() => {
-    dispatch(getOneFixtureAction(id))
-    console.log(fixture);
-  })
+    const fetchData = async () => {
+      await dispatch(getTicketManagementAction());
+      await dispatch(getOneFixtureAction(id));
+
+      if (fixture) {
+        setValue("fixtureDescId", fixture.fixtureDescId);
+        setValue("fixtureTime", fixture.fixtureTime);
+        setValue("fixtureLocation", fixture.fixtureLocation);
+        setValue("homeTeam", fixture.homeTeam);
+        setValue("awayTeam", fixture.awayTeam);
+        setValue("fixtureDate", fixture.fixtureDate);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {}, [fixture]);
 

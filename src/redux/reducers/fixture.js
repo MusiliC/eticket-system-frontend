@@ -89,8 +89,9 @@ export const fixtureSlice = createSlice({
           ? action.payload.fixture
           : state.fixture;
       })
-      .addCase(updateFixtureAction.rejected, (state) => {
+      .addCase(updateFixtureAction.rejected, (state, action) => {
         state.updatingFixture = false;
+        console.error("Error details:", action.error);
       });
   },
 });

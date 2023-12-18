@@ -99,4 +99,8 @@
     color: rgb(10, 79, 182);
     font-weight: 600;
   }
+
+  .detailStyling{
+    @apply flex items-center justify-between border-b py-3 md:p-3 border-gray-200
+  }
 }

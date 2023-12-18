@@ -51,7 +51,7 @@ export const updateTicketManagementAction = createAsyncThunk(
   "ticketmanagement/update/id",
   async (id, event) => {
     try {
-      const res = await API.post(`ticketmanagement/update/${id}`, event);
+      const res = await API.put(`ticketmanagement/update/${id}`, event);
       return {
         ticketEvent: res?.data,
         success: true,

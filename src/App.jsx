@@ -21,6 +21,7 @@ import AdminDashLayout from "./modules/admin/layout/AdminDashLayout"
 import UserHomeLayout from "./modules/user/layout/UserHomeLayout"
 import UpdateFixtureForm from "./modules/forms/UpdateFixtureForm"
 
+
 function App() {
 
   const router = createBrowserRouter([
@@ -34,6 +35,7 @@ function App() {
     children:[
     { index: true, element: <UserHome/> },
     { path: "book", element: <BookTicket/> },
+  
     { path: "fixtures", element: <FixturePage/> },
     { path: "tickets", element: <UserTickets/> },
     { path: "tickets/:id", element: <OneTicket/> },
