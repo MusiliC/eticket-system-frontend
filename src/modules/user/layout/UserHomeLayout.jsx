@@ -6,7 +6,16 @@ import Footer from '../../../components/common/Footer'
 
 const UserHomeLayout = () => {
 
- 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      // Redirect to the sign-in page or another authentication page
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <>
