@@ -1,19 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/common/Header";
 import TicketCard from "../components/cards/TicketCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getBookTicketAction } from "../../../redux/actions/bookTicketAction";
+import { getBookTicketAction, getUserTickets} from "../../../redux/actions/bookTicketAction";
 
 const UserTickets = () => {
   const dispatch = useDispatch();
+
+  const { userId } = useSelector((state) => state.authReducer);
+  const [userTickets, setuserTickets] = useState([])
+
+  console.log(userId);
 
   const { loading, totalTickets } = useSelector(
     (state) => state.bookTicketReducer
   );
 
   useEffect(() => {
-    dispatch(getBookTicketAction());
+    const fetch = async() => {
+      const res = await dispatch(getUserTickets(userId));
+      console.log(res.payload.totalTickets);
+      setuserTickets(res.payload.totalTickets)
+    }
+    fetch()
+   
   }, []);
 
   return (
@@ -23,10 +34,10 @@ const UserTickets = () => {
         <div className="listComponentContainer mt-3">
           {loading ? (
             <p className="headerThree">Loading..</p>
-          ) : totalTickets?.length === 0 ? (
+          ) : userTickets?.length < 1 ? (
             <p>No data Found</p>
           ) : (
-            totalTickets?.map((ticket) => (
+            userTickets?.map((ticket) => (
               <TicketCard key={ticket.id} {...ticket} />
             ))
           )}
